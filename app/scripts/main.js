@@ -1,4 +1,4 @@
-import { Application, Sprite } from 'pixijs';
+import { Application } from 'pixijs';
 import { PixiContainer } from './PixiContainer.js';
 import { PixiSprite } from './PixiSprite.js';
 import pixiJsLogo from '../images/pixijs-logo.svg';
@@ -8,9 +8,13 @@ import config from '../../config.json' assert { type: 'json' };
 let app = new Application(config.Application);
 document.getElementById('app').appendChild(app.view);
 
-// Create the sprite and add it to the stage
-let sprite = Sprite.from(pixiJsLogo);
-app.stage.addChild(sprite);
+// Create the container and add it to the stage
+let container = new PixiContainer();
+app.stage.addChild(container);
+
+// Create the sprite and add it to the container
+let sprite = PixiSprite.from(pixiJsLogo);
+container.addChild(sprite);
 
 // Add a ticker callback to move the sprite back and forth
 let elapsed = 0.0;
